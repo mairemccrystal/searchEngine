@@ -20,7 +20,7 @@
  *
 */
 // This is our starting point. Change this to whatever URL you want.
-$start = "https://www.belfastlive.co.uk/news/belfast-news/boucher-road-crash-causes-delays-17510200";
+$start = "https://www.belfastlive.co.uk";
 $dbhost = "database-1.cacihsari076.us-east-1.rds.amazonaws.com";
    $dbname = "webscraper2";
    $dbusername = "admin";
