@@ -1,15 +1,15 @@
 <?php
 
-$dbhost = "database-1.cacihsari076.us-east-1.rds.amazonaws.com";
-   $dbname = "webscraper2";
-   $dbusername = "admin";
+$dbhost = "35.184.201.18";
+   $dbname = "webcrawler";
+   $dbusername = "root";
    $dbpassword = "daveCutting123";
 
    $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 
-   $dbhost2 = "adsdb.cacihsari076.us-east-1.rds.amazonaws.com";
-   $dbname2 = "ads";
-   $dbusername2 = "admin";
+   $dbhost2 = "34.67.238.189";
+   $dbname2 = "sponsoredlnks";
+   $dbusername2 = "root";
    $dbpassword2 = "daveCutting123";
 
    $pdo2 = new PDO("mysql:host=$dbhost2;dbname=$dbname2", $dbusername2, $dbpassword2);
@@ -30,10 +30,10 @@ $dbhost = "database-1.cacihsari076.us-east-1.rds.amazonaws.com";
      $params[":search$x"] = $term;
    }
 
-   $results = $pdo->prepare("SELECT * FROM webscraper2.index WHERE $construct");
+   $results = $pdo->prepare("SELECT * FROM webcrawler.index WHERE $construct");
    $results->execute($params);
 
-   $ads = $pdo2->prepare("SELECT * FROM ads.adverts WHERE $construct");
+   $ads = $pdo2->prepare("SELECT * FROM sponsoredlnks.index WHERE $construct");
    $ads->execute($params);
 
 
