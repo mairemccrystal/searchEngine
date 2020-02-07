@@ -20,10 +20,10 @@
  *
 */
 // This is our starting point. Change this to whatever URL you want.
-$start = "https://www.itv.com/news/utv/";
-$dbhost = "database-1.cacihsari076.us-east-1.rds.amazonaws.com";
-   $dbname = "webscraper2";
-   $dbusername = "admin";
+$start = "https://en.wikipedia.org/wiki/Queen%27s_University_Belfast";
+$dbhost = "35.184.201.18";
+   $dbname = "webcrawler";
+   $dbusername = "root";
    $dbpassword = "daveCutting123";
 
    $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
@@ -107,7 +107,7 @@ function follow_links($url) {
         $details = json_decode(get_details($l));
         echo $details->URL."";
         echo md5($details ->URL);
-        $rows = $pdo->query("SELECT * FROM webscraper2.index WHERE url_hash='".md5($details->URL)."'");
+        $rows = $pdo->query("SELECT * FROM webcrawler.index WHERE url_hash='".md5($details->URL)."'");
         $rows = $rows->fetchColumn();
 
         $params = array(':title'=>$details->Title, ':description'=>$details->Description, ':keywords'=>$details->Keywords, ':url'=>$details->URL, ':url_hash'=>md5($details->URL));
@@ -116,7 +116,7 @@ function follow_links($url) {
         if($rows > 0){
           if (!is_null($params[':title']) && !is_null($params[':description']) && $params[':title'] != ''){
 
-          $result = $pdo->prepare("UPDATE webscraper2.index SET title=:title, description=:description, keywords=:keywords, url=:url, url_hash:url_hash WHERE url_hash=:url_hash)");
+          $result = $pdo->prepare("UPDATE webcrawler.index SET title=:title, description=:description, keywords=:keywords, url=:url, url_hash:url_hash WHERE url_hash=:url_hash)");
           $result = $result->execute($params);
 
         }
@@ -124,7 +124,7 @@ function follow_links($url) {
 
           if (!is_null($params[':title']) && !is_null($params[':description']) && $params[':title'] != ''){
 
-          $result = $pdo->prepare("INSERT INTO webscraper2.index VALUES('',:title, :description, :keywords, :url, :url_hash)");
+          $result = $pdo->prepare("INSERT INTO webcrawler.index VALUES('',:title, :description, :keywords, :url, :url_hash)");
           $result = $result->execute($params);
 
         }}
