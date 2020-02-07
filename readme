@@ -1,0 +1,86 @@
+THE DATABASES
+
+Ensure that you have used the right database and you can do this by inputting 
+the data like so:
+This should be done for the ad crawler, main crawler and in the search 
+
+$dbhost2 = "34.67.238.189";
+   $dbname2 = "sponsoredlnks";
+   $dbusername2 = "root";
+   $dbpassword2 = "password123";
+
+BRINGING UP CONTAINERS
+
+Go to the github repository to get the code -
+https://github.com/mairemccrystal/searchEngine
+
+Clone this repository onto the target machine.
+We are assuming that docker is installed on the target machine.
+
+In the location of the cloned repository we want to build a docker image.
+First tag the docker image like so 
+docker tag my-search-engine gcr.io/refined-legend-257714/my-search-engine 
+
+Replacing my-search-engine with the name of your container and ending the path
+the Google Cloud Registry name 
+
+Push the container up to the registry by using the following command 
+gcloud docker -- push gcr.io/refined-legend-257714/my-search-engine
+
+As containers run independently you can have many running at the same time.
+
+To push the Container up to AWS: 
+docker push imagename.dkr.ecr.us-east-1.amazonaws.com/variablehere:latest
+Where imagename is interchangable with the name of what you are pushing and variable here should be swapped out. 
+
+
+LOGGING INTO THE AWS CLI
+
+(aws ecr get-login)
+(aws ecr get-login --no-include-email --region us-east-1)
+aws configure 
+ 
+
+CREATING A KUBERNETES CLUSTER 
+
+Create a new cluster on AWS on the CLI by using the create-cluster command and specify the instance, type and the subnet IDs. 
+
+You can do this as well on Google Cloud Platform on the UI. 
+Within the Kubernetes Engine select to create a cluster. 
+Give the cluster a relevant name. 
+
+Choose a location, a zone and the number of desired nodes. 
+Select the machine that you wish to use. 
+When you are happy with the configuration select to create the cluster. 
+
+REGISTRIES 
+The registry refers to where your code is stored 
+On Google this is GCR and ECR on AWS 
+
+DEPLOYING A CONTAINER AS A WORKLOAD 
+
+On AWS this is done with Creating a Service with a Task through the UI. It can be done also on the AWS CLI. You can see here how to create a service definition. 
+https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html
+
+On Google Cloud Platform: 
+Deploy an docker container to a Workload. 
+Click to create a workload in the Kubernetes Engine, select the container and the image to the path and ensure this is what you want. 
+When you are happy with the configuration click to continue. 
+This will take a minute at the - Waiting for Pods stage. 
+
+ENABALING LOAD BALANCER 
+
+Create a load balancer for the services. 
+This is done through ingress control for AWS and and GCP 
+
+On Google Cloud Platform: 
+When the pods have came up and everything is deployed as it should be,
+Go to Exposing services. 
+Expose port 80 as a new port mapping and click to expose as a load balancer. 
+When this completes 
+
+Click on the external endpoints and this will give you the IP address where you can access the hosted version of your container on the cloud. 
+
+
+
+
