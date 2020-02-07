@@ -7,6 +7,7 @@ $dbhost = "35.184.201.18";
 
    $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 
+
    $dbhost2 = "34.67.238.189";
    $dbname2 = "sponsoredlnks";
    $dbusername2 = "root";
