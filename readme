@@ -4,10 +4,6 @@ Ensure that you have used the right database and you can do this by inputting
 the data like so:
 This should be done for the ad crawler, main crawler and in the search 
 
-$dbhost2 = "34.67.238.189";
-   $dbname2 = "sponsoredlnks";
-   $dbusername2 = "root";
-   $dbpassword2 = "password123";
 
 BRINGING UP CONTAINERS
 
@@ -63,7 +59,7 @@ On AWS this is done with Creating a Service with a Task through the UI. It can b
 https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html
 
 On Google Cloud Platform: 
-Deploy an docker container to a Workload. 
+Deploy a docker container to a Workload. 
 Click to create a workload in the Kubernetes Engine, select the container and the image to the path and ensure this is what you want. 
 When you are happy with the configuration click to continue. 
 This will take a minute at the - Waiting for Pods stage. 
